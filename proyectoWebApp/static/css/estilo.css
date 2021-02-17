@@ -1,0 +1,323 @@
+html {
+	min-height: 100%;
+	position: relative;
+	width: 100%;
+  }
+
+footer {
+	background-color: #252932;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	color: white;
+	line-height: 3;
+	margin-top: 20px;
+	box-sizing: content-box;
+}
+
+.copyright{
+	width:100%;
+}
+
+body {
+	margin: 0;
+	margin-bottom: 10px;
+	background-color: #ececec;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+	width:100%; /* Establecemos que el header abarque el 100% del documento */
+	overflow:hidden; /* Eliminamos errores de float */
+	background:#252932;
+	margin-bottom: 20px;
+	border:1px #252932;
+	padding-right: 2em;
+}
+
+.wrapper {
+	max-width: 1000px; /* Aqui le decimos que el ancho máximo sera de 1000px */
+	width: 70%;
+	margin: auto; /* Centramos los elementos */
+	margin-bottom: 70px;
+	overflow:hidden; /* Eliminamos errores de float */
+	float: inline-end;
+	background-color: #f2f2f2;
+	padding: 1%;
+	border: 1px solid #d4d4d4;
+	z-index: 1000;
+}
+
+.wrapper2 {
+	max-width: 1000px; /* Aqui le decimos que el ancho máximo sera de 1000px */
+	margin: auto; /* Centramos los elementos */
+	overflow:hidden; /* Eliminamos errores de float */
+}
+
+header .logo {
+	color:#f2f2f2;
+	font-size:45px;
+	line-height:200px;
+	float:left;
+}
+
+header nav {
+	float:right;
+	line-height:200px;
+}
+
+header nav a {
+	display:inline-block;
+	color:#fff;
+	text-decoration:none;
+	padding:10px 20px;
+	line-height:normal;
+	font-size:20px;
+	font-weight:bold;
+	-webkit-transition:all 500ms ease;
+	-o-transition:all 500ms ease;
+	transition:all 500ms ease;
+}
+
+header nav a:hover {
+	background:#f56f3a;
+	border-radius:50px;
+}
+
+.header2 {
+	position: fixed;
+	height:100px;
+	z-index: 10000;
+}
+ 
+.header2 .logo {
+	line-height:100px;
+	font-size:30px;
+}
+ 
+.header2 nav {
+	line-height:100px;
+}
+
+.botonSubmit {
+	border: solid 1px black;
+}
+
+hr {
+	border-top: solid 2px #f56f3a;
+	border-radius: 2;
+}
+
+.formularios {
+	width: 60%;
+	height: 50%;
+	float: left;
+	box-sizing: content-box;
+}
+
+.lateral {
+	width: 25%;
+	height: 100%;
+	float: right;
+	box-sizing: content-box;
+	margin-top: 15px;
+	background-color: #f56f3a;
+	color: #f2f2f2;
+}
+
+.lateral a img {
+	width: 100%;
+	display: block;
+	margin: auto;
+		
+}
+
+.lateral a {
+	text-align: left;
+	color: black;
+	margin: 10px auto;
+	width: 100%;
+	display: block;
+	text-decoration: none;
+	color: #f2f2f2;
+}
+
+.lateral a:hover {
+	text-decoration: underline;
+}
+
+.articulos {
+	display: block;
+	float: right;
+}
+
+.enlace {
+	padding: 10px;
+	margin: 10px;
+	height: 25%;
+
+}
+
+#visor {
+	display:block;
+	margin:10px auto;
+	width: 70%;
+}
+
+.botones {
+	margin: auto;
+	text-align: center;
+}
+.botones input[type="button"] {
+	background-color: #f56f3a;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    font-size: 16px;
+    min-width: 21%;
+    margin: 4px 2px;
+    cursor: pointer;
+
+}
+
+.botones input :hover {
+	background-color: #252932;
+}
+
+/* .intro {
+	width: 45%;
+	display: inline;
+	float: right;
+} */
+
+.imagen-articulo {
+	width: 75%;
+}
+
+.articulos p {
+	display: block;
+}
+
+#factura-img {
+	position: sticky;
+	left: 30em;
+}
+
+
+@media screen and (max-width: 950px) {
+	html {
+		width: 100%;
+	}
+	
+	*{
+		font-size: 95%;
+	}
+
+	header .logo,
+	header nav {
+		width:100%;
+		text-align:center; /*Centramos el menu y el logotipo*/
+		line-height:2em;
+		font-size: 180%;
+	}
+ 
+
+
+	.header2 {
+		height:auto;
+		width:90%;
+		padding: 2em;
+		margin: auto;
+	}
+ 
+	.header2 .logo,
+	.header2 nav {
+		line-height:40px;
+		margin-top: 1em;
+		width:100%;
+	}
+
+	.wrapper {
+		margin: auto;
+		width: 100%;
+		margin-bottom: 3em;
+	}
+
+	.wrapper div {
+		margin: 1em;
+		width: 95%;
+	}
+	.center {
+		display:block;
+		margin: 5% auto;
+		width: 40%;
+	}
+	
+	.left {
+		width: 29%;
+	}
+	
+	.right {
+		width: 29%;
+	}
+	
+	#visor {
+		width: 100%;
+		margin: 0px;
+	}
+
+	.formularios {
+		margin: auto;
+	}
+
+	.enlace {
+		float: right;
+		width: 50%;
+	}
+
+	.lateral {
+        width: 10em;
+        margin: auto;
+		float: right;
+        margin-right: 1em;
+		background: none;
+    }
+
+	.lateral a{
+		font-size: 1em;
+		width: 70%;
+		text-align: left;
+		margin: auto;
+		font-family:Georgia, 'Times New Roman', Times, serif;
+		color: black;
+	}
+
+	.lateral a img {
+		width: 100%;
+	}
+
+	footer {
+		width: 100%;
+		padding-right: 1.5em;
+	}
+
+	.botones input{
+		width: 25%;
+		text-align: center;
+	}
+
+	img {
+		width: 100%;
+	}
+
+	#factura-img {
+		position: none;
+	}
+
+	.imagen-articulo {
+		width: 100%;
+	}
+}
+
+
+

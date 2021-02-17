@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>{% block title %} {% endblock %}</title>
+	<meta http-equiv="Content-Type" content="text/html">
+	<link rel="stylesheet" href="../../static/css/estilo.css" media="all">
+	<link rel="stylesheet" href="../../static/css/calculadora.css" media="all">
+	<script src="../../static/js/jquery_latest.js"></script>
+	<script src="../../static/js/scroll.js"></script>
+	<script src="../../static/js/visor.js"></script>
+	{% block script %} {% endblock %}
+	<meta charset="utf-8">
+	<meta http-equiv="Expires" content="0">
+	<meta http-equiv="Last-Modified" content="0">
+	<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<body style="margin: 0;">
+	<header class="header">
+		<div class="wrapper2">
+			<div class="logo">¿Cuánto te cuesta enchufarlo?</div>
+			<nav>
+				<a href="http://localhost:8000/">Inicio</a>
+
+			</nav>
+			<!-- <nav>
+				<a href="http://localhost:8000/">Inicio</a>
+				<a href="http://localhost:8000/posts/">Posts</a>
+				<a href="http://localhost:8000/contact/">Contacto</a>
+			</nav> -->
+		</div>
+	</header>
+	{% block content %} {% endblock %}
+	<footer  style="width:100%; margin-left: 0px;"  >
+		<div class="copyright" style="background-color: #252932;">
+			<div class="container-fluid" style="background-color: #252932; color: white;">
+				©  Copyright: 
+			</div>
+		</div>
+	</footer>
+</body>
+
+</html>

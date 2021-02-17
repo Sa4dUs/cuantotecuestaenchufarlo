@@ -1,0 +1,341 @@
+{% extends "proyectoWebApp/base.html" %}
+
+
+{% block title %} Calculadora {% endblock %}
+
+{% block script %}
+<style>
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+<style>
+    #botonEnviar {
+        display: inline-block;
+        padding: 10px 40px;
+        color: white;
+        font-family: 'Rubik One', sans-serif;
+        font-size: 14px;
+        transition: all .5s;
+        background-color: #f56f3a;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+    
+    <div class="formularios"><div>
+        <h2>CALCULA AQUÍ CUÁNTO GASTA TU ELECTRODOMÉSTICO</h2>
+        <p>
+            Esta calculadora se actualiza automáticamente con el precio medio de la electricidad en tiempo real.
+        </p>
+        <p>
+            Con esta sencilla calculadora sólo tendrás que buscar el consumo de tu electrodoméstico, generalmente viene
+            en la etiqueta impresa que va pegada por detrás o debajo de él.
+            Escribe el número de horas que lo utilizas en un día, a la semana o mes y ya puedes saber lo que gastas en
+            consumo eléctrico.
+        </p>
+    </div>
+        <form class="calculadora" action="/result/" method="GET"> {% csrf_token %}
+            <div class="calculadora">
+                <!-- <label for="precio">Precio del KW/h:</label> -->
+                <input class="label" tabindex="-1" type="text" value="Precio del kW/h:" readonly />
+                <input name="precio" type="number" value={{precio_API}} readonly />
+                <input class="label" tabindex="-1" type="text" value="€" readonly />
+            </div>
+
+            <div class="calculadora">
+                <input class="label" tabindex="-1" type="text" value="Consumo:" readonly />
+                <input name="consumo" type="number" />
+                <input class="label" tabindex="-1" type="text" value="Wh" readonly />
+            </div>
+
+            <div class="calculadora">
+                <input class="label" tabindex="-1" type="text" value="Tiempo de uso:" readonly />
+                <input name="tiempo" type="number" />
+                <input class="label" tabindex="-1" type="text" value="horas" readonly />
+            </div>
+
+            {% block result %} {% endblock %}
+
+            <div class="calculadora">
+                <input id="botonSubmit" name="botonEnviar" type="submit" value="Calcular">
+            </div>
+        </form>
+        <form name="calculator" class="calculadora">
+            <h3>Calculadora</h3>
+            <p>Haz aquí los cálculos que necesites</p>
+            <input type="textfield" name="ans" value="" readonly>
+            <br>
+            <script type="text/javascript">var restart = false</script>
+            <input type="button" value="1"
+                onClick="if (!restart){document.calculator.ans.value+='1'} else{document.calculator.ans.value='1'; restart=false}">
+            <input type="button" value="2"
+                onClick="if (!restart){document.calculator.ans.value+='2'} else{document.calculator.ans.value='2'; restart=false}">
+            <input type="button" value="3"
+                onClick="if (!restart){document.calculator.ans.value+='3'} else{document.calculator.ans.value='3'; restart=false}">
+            <input type="button" value="+"
+                onClick="if (!restart){document.calculator.ans.value+='+'} else{document.calculator.ans.value='+'; restart=false}">
+            <br>
+            <input type="button" value="4"
+                onClick="if (!restart){document.calculator.ans.value+='4'} else{document.calculator.ans.value='4'; restart=false}">
+            <input type="button" value="5"
+                onClick="if (!restart){document.calculator.ans.value+='5'} else{document.calculator.ans.value='5'; restart=false}">
+            <input type="button" value="6"
+                onClick="if (!restart){document.calculator.ans.value+='6'} else{document.calculator.ans.value='6'; restart=false}">
+            <input type="button" value="-"
+                onClick="if (!restart){document.calculator.ans.value+='-'} else{document.calculator.ans.value='-'; restart=false}">
+            <br>
+            <input type="button" value="7"
+                onClick="if (!restart){document.calculator.ans.value+='7'} else{document.calculator.ans.value='7'; restart=false}">
+            <input type="button" value="8"
+                onClick="if (!restart){document.calculator.ans.value+='8'} else{document.calculator.ans.value='8'; restart=false}">
+            <input type="button" value="9"
+                onClick="if (!restart){document.calculator.ans.value+='9'} else{document.calculator.ans.value='9'; restart=false}">
+            <input type="button" value="*"
+                onClick="if (!restart){document.calculator.ans.value+='*'} else{document.calculator.ans.value='*'; restart=false}">
+            <br>
+            <input type="button" value="0"
+                onClick="if (!restart){document.calculator.ans.value+='0'} else{document.calculator.ans.value='0'; restart=false}">
+            <input type="reset" value="C">
+            <input type="button" value="/"
+                onClick="if (!restart){document.calculator.ans.value+='/'} else{document.calculator.ans.value='/'; restart=false}">
+            <input type="button" value="="
+                onClick="try{if (eval(document.calculator.ans.value)!=undefined) {document.calculator.ans.value=eval(document.calculator.ans.value)} else {document.calculator.ans.value=''};} catch{document.calculator.ans.value='Operación inválida'} finally{restart = true}">
+        </form>
+    </div>
+    <div class="lateral">
+        <div class="enlace">
+            <a  href="http://www.controlastuenergia.gob.es/ayudas-eficiencia/Paginas/ayudas-eficiencia.aspx"><img src="https://cdn.pixabay.com/photo/2016/11/03/15/27/socket-1794616__340.jpg"></a>
+            <a class="titular"  href="http://www.controlastuenergia.gob.es/ayudas-eficiencia/Paginas/ayudas-eficiencia.aspx"><b>Ayudas a
+                la eficiencia</b><br>¿Quieres tener un hogar o un negocio más sostenible? ¿pagar menos por tu factura? En
+esta web conocerás qué ayudas están activas actualmente</a>
+        </div>
+        <div class="enlace">
+            <a href="http://www.controlastuenergia.gob.es/consumo-inteligente/Paginas/certificado-energetico.aspx"><img src="https://cdn.pixabay.com/photo/2017/01/18/16/46/hong-kong-1990268__340.jpg"></a>
+            <a class="titular" href="http://www.controlastuenergia.gob.es/consumo-inteligente/Paginas/certificado-energetico.aspx"><b>Rehabilitación
+                energética de edificios. Certificación energética</b></a>
+        </div>
+        <div class="enlace">
+            <a href="http://guiaenergia.idae.es"><img src="https://cdn.pixabay.com/photo/2014/10/26/14/36/light-bulb-503881__340.jpg"></a>
+            <a class="titular" href="http://guiaenergia.idae.es"> <b>Ahorrar en el hogar es fácil... sigue estas recomendaciones</b> </a>
+        </div>
+
+        </table>
+    </div>
+
+    <div class="articulos">
+        <hr>
+        <h3>Comparador de ofertas de energía</h3>
+        <img class="imagen-articulo" src="https://www.ocu.org/-/media/ocu/images/home/dinero/invertir%20sin%20riesgo/1600x900fondos%20ocu.jpg?la=es-es&rev=8ddac774-ef64-4d09-89b2-5491c7734503&h=338&w=600&hash=C2BCA596B962F7E07A871B12EB020F17&mw=960" alt="comparador de tarifas">
+        <p class="intro">Te ofrecemos varios enlaces para que puedas comparar, si quieres contratar o mejorar tu factura respecto al
+            suministro
+            energético. Te advertimos que en la página del CNMC debes elegir entre: Electricidad, Gas u oferta conjunta,
+            para poder
+            acceder a la información.</p>
+        <p><a href="https://comparador.cnmc.gob.es">página web de la CNMC</a></p>
+        <p>Según lo especificado en el apartado 3 del artículo 20 del <a
+                href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2014-3376">Real Decreto 216/2014, de 28 de
+                marzo</a>, la Comisión Nacional
+            de Mercados y de la Competencia ( -CNMC- ) deberá habilitar en su web una herramienta que permita al
+            consumidor
+            acogido a PVPC comparar éste con las ofertas a precio fijo anual.</p>
+        <p>Se puede acceder a la citada herramienta a través de  la <a href="https://comparador.cnmc.gob.es">la página
+                web de la CNCM</a> . Las ofertas a precio fijo anual se
+            publicarán en <a href="https://comparador.cnmc.gob.es">el comparador de la CNMC</a>. Estas ofertas aparecen
+            conjuntamente y sin distinción con las ofertas en
+            mercado libre.</p>
+
+        <p>Las ofertas en el mercado libre, a diferencia de las del precio fijo anual, incluyen habitualmente la
+            contratación de otros
+            productos tales como seguros o servicios de mantenimiento, vinculaciones para periodos superiores a
+            un año, contratación obligatoria por Internet, factura electrónica, regularizaciones anuales conforme
+            al IPC, etc.</p>
+        <p>Por tanto, debe advertirse a los consumidores que las condiciones de las ofertas del mercado libre, en
+            general, no son
+            comparables con las ofertas a precio fijo anual.</p>
+        <p>Además de lo anterior, puede obtener más información a través de su compañía eléctrica, que dispone de un
+            servicio de
+            atención al cliente gratuito, cuyo teléfono debe figurar en la factura.</p>
+        <p>Fuente: https://energia.gob.es/</p>
+        <hr>
+        <h3>Entiende tu factura, fácil</h3>
+        <div class="visor">
+            <img id="visor"
+                src="http://www.controlastuenergia.gob.es/factura-electrica/factura/facturas/factura-electrica-1.jpg"
+                alt="Factura 1/3">
+
+            <div class="botones">
+                <input type="button" value="1/3" onclick="foto(1)">
+                <input type="button" value="2/3" onclick="foto(2)">
+                <input type="button" value="3/3" onclick="foto(3)">
+            </div>
+            <div id="principal"></div>
+        </div>
+        <p>El Ministerio de Industria, Energía y Turismo (actual  Ministerio de Energía, Turismo y Agenda Digital),
+            a
+            través de
+            la <a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2014-5655">Resolución de 23 de mayo de 2014,
+                de
+                la Dirección General de Política Energética y Minas, por la que se establece el
+                contenido mínimo y el modelo de factura de electricidad</a>, ha definido un modelo de factura
+            eléctrica
+            que han adoptado
+            las comercializadoras de referencia con el fin de facilitar la comprensión por parte del consumidor.
+            El modelo de factura es obligatorio para las comercializadoras de referencia que suministren a los
+            consumidores
+            acogidos a precio voluntario para el pequeño consumidor (PVPC), incluidos los consumidores vulnerables a
+            los
+            que
+            aplica el bono social, y a los consumidores sin derecho a acogerse al precio voluntario para el pequeño
+            consumidor que
+            transitoriamente carezcan de un contrato de suministro con una comercializadora en mercado libre.
+            A través de este modelo de factura, se pretende que las facturas eléctricas faciliten información sobre
+            los
+            consumos y
+            los costes asociados de forma clara y concisa. El objetivo es que el consumidor pueda realizar
+            comparaciones
+            entre
+            distintas ofertas y posibilite el conocimiento sobre su coste de suministro, precios, tarifas y
+            condiciones
+            generales del
+            acceso y uso de los servicios de electricidad.
+            El destino del importe de la factura, el origen e impacto ambiental de la electricidad consumida se
+            incorporan también
+            como parte del contenido de la factura.</p>
+        <p>Fuente: https://energia.gob.es/</p>
+        <hr>
+        <h3>La facturación horaria, cómo entenderla</h3>
+        <img id="factura-img" class="imagen-articulo" src="https://cdn.pixabay.com/photo/2018/01/24/17/33/light-bulb-3104355__340.jpg" alt="Factura horaria">
+        <p>Las compañías eléctricas aplican a sus clientes acogidos al PVPC, es decir al Precio
+            Voluntario para el Pequeño Consumidor, la facturación horaria. Pero ¿Qué es el PVPC?
+            ¿Cómo puedo entender la facturación horaria?. En estas pocas líneas te lo explicamos
+            todo:</p>
+        <p>Como consecuencia de este cambio, el consumidor podrá ahorrar desplazando ciertos consumos a las horas en
+            que
+            la
+            electricidad es más barata, por ejemplo programando lavadora o lavavajillas para que funcionen durante
+            la
+            madrugada.</p>
+        <p>Todos los contadores deberán ser sustituidos por contadores inteligentes antes de finalizar el año 2018.
+            No
+            obstante, a
+            aquellos consumidores que no dispongan aún de contador efectivamente integrado, se les seguirá
+            facturando
+            como
+            hasta ahora.</p>
+        <p>Estos cambios se añaden a los ya producidos en 2014, puesto que desde entonces, se factura la energía
+            consumida
+            tomando como referencia el precio de la electricidad del mercado mayorista, que cotiza y cambia en
+            función
+            de la oferta
+            y la demanda cada hora. Esta información puede consultarse diariamente en <a
+                href="https://www.ree.es/es/actividades/operacion-del-sistema-electrico/precio-voluntario-pequeno-consumidor-pvpc">la
+                web de Red Eléctrica</a>.</p>
+        <p>RECUERDA: “Las compañías eléctricas tienen desde el 1 de julio hasta el 1 de octubre de 2015 para
+            adaptarse y comenzar a aplicar la facturación horaria a todos sus clientes acogidos al Precio Voluntario
+            para el Pequeño Consumidor <a
+                href="http://www.controlastuenergia.gob.es/factura-electrica/contratos/Paginas/PVPC.aspx">PVPC</a>.
+            La
+            facturación se realizará aplicando al consumo real en cada
+            hora el precio horario de la energía en el mercado mayorista de electricidad. Anteriormente se
+            estimaba la distribución horaria del consumo mediante un perfil elaborado por Red Eléctrica”.</p>
+        <h4>*Qué es el PVPC</h4>
+        <p>Si quieres saber qué es Precio Voluntario para el Pequeño Consumidor pincha aquí:
+            PVPC</p>
+        <a
+            href="http://www.controlastuenergia.gob.es/factura-electrica/contratos/Paginas/PVPC.aspx">http://www.controlastuenergia.gob.es/factura-electrica/contratos/Paginas/PVPC.aspx</a>
+        <p>Fuente: https://energia.gob.es/</p>
+        <hr>
+        <h3>5 consejos para que ahorres, mes a mes, en tu factura de la luz</h3>
+        <p>En nuestra página te ofrecemos la posibilidad de calcular cuanto consume tu
+            electrodoméstico, sea cual sea. Pero, si lo que realmente quieres es ahorrar en tu factura,
+            mes a mes, tranquilo, es fácil. Te ofrecemos 5 sencillos consejos que, si los sigues al pié
+            de la letra, te ayudarán a ahorrar algunos euros.</p>
+        <p>El precio de los suministros supone una importante carga en el presupuesto familiar, pero es posible
+            mantener
+            a
+            raya ese gasto:  apunta
+            estos 5 consejos prácticos para ahorrar energía con soluciones como ajustar la potencia, comparar las
+            diferentes
+            tarifas o evitar el
+            consumo en stand-by.</p>
+        <img class="imagen-imagen-articulo" src="https://www.ocu.org/-/media/ocu/images/home/vivienda%20y%20energia/gas%20y%20luz/baja%20luz_grafico_monedas.jpg?rev=c65c064a-58f0-42f0-b3d2-94a4c19b8f64&mw=480&hash=9E996839F76B2676BF65DAD8B18B3975" alt="ahorrar enegía">
+        <ol>
+            <li>Ajustar la potencia eléctrica para ahorrar energia</li>
+            <p>Buena parte de lo que pagas en tu factura es la potencia contratada: cada 1,15 Kw de potencia suponen
+                casi 50
+                euros al año. Por eso es
+                fundamental controlar cuánta potencia contratas.
+                Si en tu casa nunca han  saltado los plomos , ni siquiera cuando pones a la vez la lavadora, el
+                horno,
+                el
+                lavavajillas... Puede ser que tengas
+                margen para contratar menos potencia de la que estás pagando.</p>
+            <li>Apostar por la Discriminación horaria</li>
+            <p>Una tarifa con  Discriminación Horaria  es la mejor manera de ahorrar para casi todos los hogares. Te
+                interesa si eres capaz de concentrar al
+                menos el 30% de la luz que consumes en horario valle (desde las 22 horas hasta las 12; desde las 23
+                a
+                las 13
+                en verano). Los hogares que no
+                tienen esta tarifa consumen de media un 50% en horario valle, por lo que sin esfuerzos adicionales
+                podrían
+                ahorrar 80 € al año en su factura
+                de la luz</p>
+            <p>La discriminación horaria está disponible tanto para los hogares que tienen contratada la  tarifa
+                regulada
+                PVPC , como para los hogares que
+                están con una oferta en el mercado libre.</p>
+            <li>Apagar aparatos en stand-by</li>
+            <p>El consumo silencioso de los aparatos que están &quot;apagados-pero-encendidos&quot; te sale más caro
+                de
+                lo
+                que crees.
+                Apagar todo lo que se queda en stand-by (teles, ordenadores, equipos de música...) significa ahorrar
+                un
+                10%
+                de todo lo que consumes. Para
+                un consumo medio (3.500 kWh/año) esto son 52 euros de ahorro</p>
+            <li>Ajustar el gasto en calefacción</li>
+            <p>
+                Una temperatura en casa de 19ºC a 21ºC es razonable. Por la noche es mejor que en los dormitorios
+                baje
+                un
+                poco: entre 15ºC y 17ºC.
+            <ul>
+                <li>Cada grado de más supone un incremento del 7% en el consumo.</li>
+                <li>Un buen mantenimiento de la  caldera puede ahorrarte hasta un 15% al año.</li>
+                <li>Los radiadores deben estar limpios y sin muebles que los tapen (dificulta la difusión del aire
+                    caliente).</li>
+                <li>Los  radiadores tienen que purgarse  al comienzo de la temporada, en otoño, para que no tengan
+                    aire
+                    dentro (dificulta la transmisión de
+                    calor desde el agua al aire exterior).</li>
+            </ul>
+            </p>
+            <li>Usar con inteligencia los electrodomésticos</li>
+            <p>Elige los programas que funcionan a temperaturas bajas (al calentar el agua es cuando más consumen).
+            <ul>
+                <li>Lavadora: temperaturas entre 40ºC y 60ºC implican un ahorro del 40% en luz.</li>
+                <li>Lavavajillas: los programas Eco funcionan a unos 50ºC.</li>
+                <li>Frigorífico: cuida bien dónde esta instalado (alejado de las fuentes de calor, con espacio
+                    suficiente),
+                    y no te pases poniendo demasiado frío
+                    el termostato.</li>
+            </ul>
+            </p>
+
+        </ol>
+        <p>Fuente: ocu.org</p>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "proyectoWebApp/index.html" %}
+
+    {% block result %}
+    {% if precio_estimado == None %}
+    <div class="error">
+        <p>
+            <b>Por favor introduzca valores válidos en todos los campos</b>
+        </p>
+    </div>
+    {% else %}
+    <div class="resultado">
+        <input type="text" class="label" value="Precio estimado:" readonly>
+        <input type="text" name="resultado" value={{precio_estimado}} readonly>
+        <input type="text" class="label" value="€" readonly>
+    </div>
+    {% endif %}
+    {% endblock %}

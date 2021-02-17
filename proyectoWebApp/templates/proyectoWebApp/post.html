@@ -1,0 +1,17 @@
+{% extends "proyectoWebApp/base.html" %}
+{% block title %} Posts {% endblock %}
+{% block content %}
+<p class="contenido wrapper"> <b>Esta es la template de POSTS</b></p>
+
+{% for post in posts %}
+    <div>
+        <hr size="2px" color="black" />
+        <p> publicado: {{ post.created }}</p>
+        <h2>{{ post.title }}</h2>
+        <h3>{{ post.subtitle }}</h3>
+        <p>{{ post.content }}</p>
+        
+    </div>
+{% endfor %}
+
+{% endblock %}

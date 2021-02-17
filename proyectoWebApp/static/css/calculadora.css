@@ -1,0 +1,122 @@
+form {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: solid 1px #c2c2c2;
+    padding-bottom: 10px;
+    margin: 10px;
+    background: #fafafa;
+  }
+input {
+    border: none;
+    outline: none;
+    border-top: solid 2px gray;
+}
+
+input[type=textfield] {
+    width: 75%;
+    padding: 16px 32px;
+    font-size: 100%;
+    margin: 8px 0;
+    border: 1px solid silver;
+    border-radius: 1px;
+    text-align: center;
+    color: #333;
+    background: #ccc;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #f56f3a;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    font-size: 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
+    background-color: #252932;
+  }
+.calculadora {
+    text-align: center;
+    margin: auto;
+    padding: 5px;
+    display: block;
+    /* background-color: #252932; */
+}
+
+.calculadora input[type=text] {
+    width: 25%;
+    background-color: #fafafa;
+}
+
+.calculadora input[type=number]:hover {
+    background-color: #ccc; 
+}
+
+.label {
+    border: none;
+    outline: none;
+}
+
+.error {
+    /* background-color: #252932; */
+    margin: 0px;
+    text-align: center;
+    background-color: #D30000;
+    color: white;
+    line-height: 2rem;
+}
+
+.resultado {
+    text-align: center;
+    margin: auto;
+    padding: 5px;
+    display: block;
+    /* background-color: #252932;
+    border: solid 2px white; */
+}
+
+.resultado input {
+    width: 25%;
+    /* background-color: #252932; */
+    /* color: white; */
+}
+
+#botonSubmit {
+	border: solid 1px black;
+    width: auto
+
+}
+
+@media screen and (max-width: 950px) {
+    .calculadora input[type="textfield"] {
+        font-size: 1em; 
+    }
+
+    .calculadora {
+        width: 100%;
+        margin-right: auto;
+    }
+
+    .calculadora input[type="button"], input[type="reset"] {
+        padding: 1em 1.5em;
+        text-align: center
+    }
+
+    
+}
+
+@media screen and (max-width: 400px){
+    .calculadora input[type="text"] {
+        width: 25%;
+        font-size: 80%;
+    }
+	.calculadora input[class="label"] {
+        width: 25%;
+        text-align: center;
+        padding-left: 1em;
+    }
+}
